@@ -10,7 +10,7 @@ on:
 
 # Define global variables
 env:
-  DOCKER_IMAGE_NAME: idrisfallout/flask-template
+  DOCKER_IMAGE_NAME: idrisfallout/subdomain
   DOCKER_IMAGE_TAG: "1.0"
 
 jobs:

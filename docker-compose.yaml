@@ -1,23 +1,21 @@
 version: '3.3'
 
 services:
-  flask-template:
-    image: idrisfallout/flask-template:1.0
-    container_name: flask-template
+  subdomain:
+    image: idrisfallout/subdomain:1.0
+    container_name: subdomain
     restart: unless-stopped
-#    ports:
-#      - "8070:80"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.flask-template.entrypoints=http"
-      - "traefik.http.routers.flask-template.rule=Host(`flask-template.waithakasam.com`)"
-      - "traefik.http.middlewares.flask-template-https-redirect.redirectscheme.scheme=https"
-      - "traefik.http.routers.flask-template.middlewares=flask-template-https-redirect"
-      - "traefik.http.routers.flask-template-secure.entrypoints=https"
-      - "traefik.http.routers.flask-template-secure.rule=Host(`flask-template.waithakasam.com`)"
-      - "traefik.http.routers.flask-template-secure.tls=true"
-      - "traefik.http.routers.flask-template-secure.service=flask-template"
-      - "traefik.http.services.flask-template.loadbalancer.server.port=80"
+      - "traefik.http.routers.subdomain.entrypoints=http"
+      - "traefik.http.routers.subdomain.rule=Host(`subdomain.waithakasam.com`)"
+      - "traefik.http.middlewares.subdomain-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.subdomain.middlewares=subdomain-https-redirect"
+      - "traefik.http.routers.subdomain-secure.entrypoints=https"
+      - "traefik.http.routers.subdomain-secure.rule=Host(`subdomain.waithakasam.com`)"
+      - "traefik.http.routers.subdomain-secure.tls=true"
+      - "traefik.http.routers.subdomain-secure.service=subdomain"
+      - "traefik.http.services.subdomain.loadbalancer.server.port=80"
       - "traefik.docker.network=nginxproxymanager_network"
     networks:
       - nginxproxymanager_network
