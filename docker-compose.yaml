@@ -5,6 +5,8 @@ services:
     image: idrisfallout/flask-template:1.0
     container_name: flask-template
     restart: unless-stopped
+    ports:
+      - "8070:80"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.flask-template.entrypoints=http"
