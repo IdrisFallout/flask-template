@@ -13,7 +13,10 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        nginx \
        supervisor \
-    && rm -rf /var/lib/apt/lists/*
+       && rm -rf /var/lib/apt/lists/*
+
+# Install Gunicorn
+RUN pip install gunicorn
 
 # Copy requirements
 COPY requirements.txt /app/
