@@ -9,11 +9,8 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-       nginx \
-       supervisor \
-       && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Gunicorn
 RUN pip install gunicorn
@@ -27,14 +24,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Flask application
 COPY . /app
 
-# Setup Nginx
-COPY nginx.conf /etc/nginx/sites-available/default
-
-# Setup Supervisor
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Expose ports
+# Expose port 80
 EXPOSE 80
 
-# Start supervisor to manage processes
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Command to run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "wsgi:app"]
