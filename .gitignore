@@ -1,4 +1,4 @@
 .idea
 docker-compose.yaml
 Dockerfile
-.github
+.github/workflows/main.yml
