@@ -1,5 +1,8 @@
-# Base image
-FROM python:3.9-slim
+# Define build argument for Python version
+ARG PYTHON_VERSION=3.9
+
+# Use the build argument in the FROM instruction
+FROM python:${PYTHON_VERSION}-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
